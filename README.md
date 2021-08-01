@@ -1,3 +1,11 @@
-# webapi-with-go
+# Estudo Golang + Docker Compose
 
-# Estudo Golang
+## Run database
+- docker-compose up --build
+
+
+## Instalação dependecia do GIN
+- go get github.com/gin-gonic/gin
+
+## Instação dependencia do postgres para rodar API
+- go get -u github.com/lib/pq
