@@ -9,3 +9,6 @@
 
 ## Instação dependencia do postgres para rodar API
 - go get -u github.com/lib/pq
+
+## Run Project
+- go run main.go
