@@ -2,9 +2,7 @@ version: "3.7"
 
 services:
   db:
-    build:
-      context: .
-      dockerfile: .dockerfile
+    build: db/.
     image: github.com/hyperyuri/webapi-db
     container_name: webapi-mvc-db
     restart: unless-stopped
@@ -12,17 +10,23 @@ services:
     ports:
       - "25432:5432"
     environment:
+      POSTGRES_DB: books
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
       PGDATA: /var/lib/postgresql/data/webapi-mvc
     volumes:
-      - ./book.sql:/docker-entrypoint-initdb.d/book.sql
+      - ./db/book.sql:/docker-entrypoint-initdb.d/book.sql
   api:
     build:
       context: .
-      dockerfile: ./server/dockerfile
+      dockerfile: .dockerfile
+    image: golang:latest
     ports:
       - "4000:5000"
     depends_on:
       - db
+    volumes:
+      - .:/go/src/webapi-with-go
 
 volumes:
   webapi-mvc:
